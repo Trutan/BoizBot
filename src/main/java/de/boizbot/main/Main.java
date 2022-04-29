@@ -1,5 +1,6 @@
 package de.boizbot.main;
 
+import de.boizbot.events.ChatEvent;
 import de.boizbot.utils.Config;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -19,11 +20,12 @@ public class Main {
     		System.err.println("    boizbot <config.json>");
     		return;
     	}
-    	
+
     	Config config = Config.loadConfigFile(args[0]);
-    	
+
         builder = JDABuilder.createDefault(config.getToken());
         builder.setActivity(Activity.listening("Spotify"));
+        builder.addEventListeners(new ChatEvent());
         builder.build();
     }
 }

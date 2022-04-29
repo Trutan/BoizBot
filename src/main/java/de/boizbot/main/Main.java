@@ -1,6 +1,6 @@
 package de.boizbot.main;
 
-import de.boizbot.utils.Key;
+import de.boizbot.utils.Config;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -13,7 +13,16 @@ public class Main {
     public static JDABuilder builder;
 
     public static void main(String[] args) throws LoginException {
-        builder = JDABuilder.createDefault(Key.token);
+    	if (args.length != 1) {
+    		System.err.println("Invalid number of arguments!");
+    		System.err.println("usage:");
+    		System.err.println("    boizbot <config.json>");
+    		return;
+    	}
+    	
+    	Config config = Config.loadConfigFile(args[0]);
+    	
+        builder = JDABuilder.createDefault(config.getToken());
         builder.setActivity(Activity.listening("Spotify"));
         builder.build();
     }

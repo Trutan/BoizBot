@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) throws LoginException {
         builder = JDABuilder.createDefault(Key.token);
-        builder.setActivity(Activity.listening("Musik"));
+        builder.setActivity(Activity.listening("Spotify"));
         builder.build();
     }
 }

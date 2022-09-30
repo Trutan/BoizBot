@@ -37,7 +37,7 @@ public class ChatEvent extends ListenerAdapter {
     }
     public void onChannelUpdateName(ChannelUpdateNameEvent event) {
         event.getGuild().getTextChannelsByName("bot-log", true)
-                .get(0).sendMessage("Der Channel " + event.getOldValue() +
+                .get(0).sendMessage("Der Channel " + event.getOldValue().getTextChannelsByName() +
                         " wurde in " + event.getChannel().getAsMention() + " geändert").queue();
     }
 }
